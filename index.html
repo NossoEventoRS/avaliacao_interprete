@@ -2,42 +2,96 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <title>Avaliação – Intérprete</title>
 
 <style>
-body{font-family:Arial;background:#9c8a8a;margin:auto;padding:auto}
-.container{max-width:auto;margin:auto;background:#fff;border:2px solid #000; display:none;} 
-.header{background:#ffffff;border-bottom:2px solid #000;padding:10px}
+*{box-sizing:border-box}
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#93d688;
+margin:0;
+padding:0;
+color:#030303;
+overflow-x:hidden;
+}
+
+.container{
+max-width:1400px;
+width:98%;
+margin:10px auto;
+background:#93d688;
+border:1px solid #93d688;
+display:none;
+}
+
+.header{
+background:#fff;
+border-bottom:3px solid #4a7a41;
+padding:10px;
+overflow:hidden;
+}
+
+.header img{
+max-width:100%;
+height:auto;
+display:block;
+}
 
 #telaLogin{
 max-width:400px;
-margin:100px auto;
+width:90%;
+margin:80px auto;
 background:#fff;
 padding:20px;
-border:2px solid #000;
+border:2px solid #3d6b35;
 text-align:center;
+border-radius:8px;
 }
+
+#telaLogin img{max-width:100%;height:auto}
 
 #telaLogin input{
 width:90%;
 padding:10px;
 margin:10px 0;
-border:1px solid #000;
+border:1px solid #6a9161;
+border-radius:4px;
+font-size:16px;
 }
 
 #telaLogin button{
-background:#fc7a00;
+background:#5f9553;
+color:#fff;
+border:none;
+border-radius:6px;
 padding:10px 40px;
 cursor:pointer;
 font-weight:bold;
+font-size:16px;
+transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+#telaLogin button:hover{
+background:#4a7a41;
+transform:translateY(-2px);
+box-shadow:0 4px 10px rgba(74,122,65,0.35);
+}
+
+#telaLogin button:active{
+transform:translateY(0);
+box-shadow:none;
 }
 
 .linha{
 display:grid;
-grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+grid-template-columns:repeat(5, 1fr);
 gap:5px;
-padding:5px;
-background:#ffe066;
+padding:8px;
+background:#fff;
+border-bottom:1px solid #cfd9cb;
+color:#333333;
 }
 
 .grid{
@@ -49,39 +103,62 @@ padding:6px;
 }
 
 .box{
-border:2px solid #000;
-background:#ffe066;
-padding:5px;
-font-size:13px
+border:1px solid #cfd9cb;
+background:#fff;
+padding:8px;
+font-size:13px;
+border-radius:4px;
 }
 
-.box h3{text-align:center;margin:0 0 5px}
+.box h3{
+text-align:center;
+margin:0 0 8px;
+padding-bottom:6px;
+color:#345c2c;
+border-bottom:2px solid #4a7a41;
+}
 
-textarea{width:100%;height:60px}
+textarea{
+width:100%;
+height:60px;
+border:1px solid #6a9161;
+border-radius:4px;
+font-family:inherit;
+padding:4px;
+}
 
 .notafinal{
 font-size:22px;
 font-weight:bold;
-text-align:center
+text-align:center;
+color:#345c2c;
 }
 
-select,input{width:100%}
+select,input{
+width:100%;
+border:1px solid #6a9161;
+border-radius:4px;
+padding:6px;
+font-family:inherit;
+}
 
 .linha-nota{
 display:flex;
 align-items:center;
 gap:6px;
-margin-bottom:6px
+margin-bottom:6px;
+flex-wrap:wrap;
 }
 
 .linha-nota .pontilhado{
 flex:1;
-border-bottom:1px dotted #000
+min-width:20px;
+border-bottom:1px dotted #b8c3b3;
 }
 
 .input-nota{
-width:42px;
-text-align:center
+width:60px;
+text-align:center;
 }
 
 .resumo-direita{
@@ -89,52 +166,124 @@ display:flex;
 justify-content:space-between;
 font-weight:bold;
 margin-top:6px;
-border-top:1px solid #000;
-padding-top:4px
+border-top:1px solid #cfd9cb;
+padding-top:4px;
+color:#345c2c;
 }
 
 .grid-inferior{
 display:grid;
 grid-template-columns:1.6fr 2.4fr 0.8fr;
 gap:6px;
-padding:6px
+padding:6px;
 }
 
 .grid-rodape{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:6px;
-padding:6px
+padding:6px;
 }
 
 .btns{
 display:flex;
 justify-content:center;
 padding:15px;
-gap:20px
+gap:20px;
+flex-wrap:wrap;
 }
 
 button{
-padding:10px 30px;
+padding:12px 30px;
 font-size:16px;
 font-weight:bold;
-cursor:pointer
+cursor:pointer;
+border-radius:6px;
+transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.btn-salvar,
+.btn-logout{
+min-width:180px;
+text-align:center;
 }
 
 .btn-salvar{
-background:#fc7a00;
-color:#020202;
-border:2px solid #000;
-border-radius:6px;
+background:#4a7a41;
+color:#fff;
+border:1px solid #3d6b35;
+}
+
+.btn-salvar:hover{
+background:#3d6b35;
+transform:translateY(-2px);
+box-shadow:0 4px 12px rgba(61,107,53,0.4);
 }
 
 .btn-logout{
-background:#ff4444;
+background:#d9463b;
 color:#fff;
-border:2px solid #000;
-border-radius:6px;
-font-size:12px!important;
-padding:5px 15px!important;
+border:1px solid #b5352b;
+font-size:16px!important;
+padding:12px 30px!important;
+}
+
+.btn-logout:hover{
+background:#b5352b;
+transform:translateY(-2px);
+box-shadow:0 4px 12px rgba(181,53,43,0.4);
+}
+
+.btn-salvar:active,
+.btn-logout:active{
+transform:translateY(0);
+box-shadow:none;
+}
+
+.overlay-loading{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.overlay-loading.ativo{
+display:flex;
+}
+
+.overlay-caixa{
+background:#fff;
+padding:30px 40px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 8px 30px rgba(0,0,0,0.3);
+}
+
+.overlay-spinner{
+width:48px;
+height:48px;
+border:5px solid #cfd9cb;
+border-top:5px solid #4a7a41;
+border-radius:50%;
+margin:0 auto 15px;
+animation:girar 0.8s linear infinite;
+}
+
+.overlay-texto{
+font-weight:bold;
+color:#345c2c;
+font-size:15px;
+}
+
+@keyframes girar{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
 }
 
 .box-ritmo{grid-column:1;grid-row:1;}
@@ -146,6 +295,47 @@ footer{
 text-align:center;
 margin-top:20px;
 font-size:12px;
+color:#000000;
+padding-bottom:20px;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 800px){
+.grid{
+grid-template-columns:1fr;
+grid-template-rows:auto;
+}
+.box-ritmo,.box-afinacao,.box-interpretacao,.box-fidelidade{
+grid-column:1;
+grid-row:auto;
+}
+.grid-inferior{
+grid-template-columns:1fr;
+}
+.grid-rodape{
+grid-template-columns:1fr;
+}
+}
+
+@media (max-width: 600px){
+.linha{
+grid-template-columns:1fr 1fr;
+}
+.header{
+grid-template-columns:1fr!important;
+text-align:center;
+}
+.header img{
+margin:0 auto 5px;
+display:block;
+}
+.btns{
+flex-direction:column;
+align-items:stretch;
+}
+button{
+width:100%;
+}
 }
 </style>
 </head>
@@ -162,24 +352,20 @@ font-size:12px;
 
 
 <div id="appContainer" class="container">
-
-<div class="header" style="display:grid;grid-template-columns:100px 1fr 100px;align-items:center">
-
-<img src="https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/Logo.png" height="30">
-
-<div style="text-align:center">
-<strong>MTG – MOVIMENTO TRADICIONALISTA GAÚCHO</strong><br>
-Nosso Evento RS<br>
-Seu evento Nossa Missão<br>
-<strong>Planilha de Avaliação – Intérprete Vocal</strong>
-</div>
-
-<img src="https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/Logo.png" height="30">
-
-</div>
+    <div class="header" style="display:grid;grid-template-columns:100px 1fr 100px;align-items:center">
+        <img src="https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/Logo.png" height="70">
+        <div style="text-align:center">
+            <strong>MTG – MOVIMENTO TRADICIONALISTA GAÚCHO</strong><br>
+           Nosso Evento RS<br>
+            <em>| Seu evento Nossa Missão |</em><br>
+            <strong>Planilha de Avaliação – Intérprete Vocal</strong>
+        </div>
+        <img src="https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/Logo.png" height="70">
+    </div>
 
 
-<div style="padding:8px;background:#ffe066;border-bottom:2px solid #000">
+
+<div style="padding:8px;background:#fff;border-bottom:1px solid #cfd9cb">
 <select id="codigo">
 <option value="">Selecione CÓDIGO do candidato *</option>
 </select>
@@ -279,6 +465,13 @@ Nota Final<br>
 <button onclick="salvar()" class="btn-salvar">SALVAR AVALIAÇÃO</button>
 </div>
 
+</div>
+
+<div id="overlayLoading" class="overlay-loading">
+<div class="overlay-caixa">
+<div class="overlay-spinner"></div>
+<div class="overlay-texto">Aguarde, finalizando envio...</div>
+</div>
 </div>
 
 <footer>
@@ -416,6 +609,7 @@ function salvar() {
     const btn = document.querySelector(".btn-salvar");
     btn.disabled = true;
     btn.innerText = "SALVANDO...";
+    document.getElementById("overlayLoading").classList.add("ativo");
 
     let payload = {
         usuarioLogin: user.usuario,
@@ -459,11 +653,13 @@ function salvar() {
     .then(res => {
         if (res.status == "OK") {
             alert("Avaliação salva com sucesso!");
+            document.getElementById("overlayLoading").classList.remove("ativo");
             location.reload();
         } else {
             alert("Erro: " + res.msg);
             btn.disabled = false;
             btn.innerText = "SALVAR AVALIAÇÃO";
+            document.getElementById("overlayLoading").classList.remove("ativo");
         }
     })
     .catch(err => {
@@ -471,6 +667,7 @@ function salvar() {
         console.error(err);
         btn.disabled = false;
         btn.innerText = "SALVAR AVALIAÇÃO";
+        document.getElementById("overlayLoading").classList.remove("ativo");
     });
 }
 </script>
